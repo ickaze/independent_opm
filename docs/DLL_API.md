@@ -1,4 +1,4 @@
-# Windows DLL / C API — 0.12, ABI 1
+# Windows DLL / C API — 0.13, ABI 1
 
 ## DLLの役割 / Scope
 
@@ -66,7 +66,7 @@ architecture in a separate tree. Match DLL bitness to the host process, not just
 ## APIとデータ
 
 - C ABI、`__cdecl`。`.def` で32/64bit共通のエクスポート名を定義。
-- `iopm_abi_version()` = 1。バージョン文字列は `0.12 / C ABI 1`。
+- `iopm_abi_version()` = 1。バージョン文字列は `0.13 / C ABI 1`。
 - `iopm_create(clock_hz, output_rate, &handle)`：100 kHz～10 MHz、8～192 kHz。X68000なら4,000,000 Hz。
 - `iopm_write_register(handle, address, value)`：各0～255。BUSYによる拒否を省く統合用書き込み。
 - `iopm_render_f32` / `iopm_render_s16`：L,R,L,Rの順、`frames*2`要素の呼び出し側バッファ。
@@ -134,3 +134,7 @@ Linux tests verify the wrapper. The Windows x64 binary has been statically inspe
 ## Save states (0.11b addition)
 
 `iopm_state_size`, `iopm_save_state`, `iopm_load_state` save/restore the core and resampler together. See [STATE_API.md](STATE_API.md).
+
+## チャンネル別出力 / Channel outputs
+
+[仕様と使用例](CHANNEL_OUTPUT_API.md)。公開関数19個、C ABI 1。DLL保存状態はv2（旧v1は読込不可）。

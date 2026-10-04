@@ -19,11 +19,11 @@ struct Archive {
     bool reading=false;std::vector<std::uint8_t> bytes;
     const std::uint8_t* input=nullptr;std::size_t size=0,pos=0;
     Archive()=default;
-    Archive(const void* p,std::size_t n,unsigned kind):reading(true),input(static_cast<const std::uint8_t*>(p)),size(n) {
-        if(!p||n<24||n>1048576) throw Invalid{};
+    Archive(const void* p,std::size_t n,unsigned kind,unsigned expected_version=1):reading(true),input(static_cast<const std::uint8_t*>(p)),size(n) {
+        if(!p||n<24||n>4194304) throw Invalid{};
         std::uint64_t magic=0,version=0,checksum=0;
         (*this)(magic,version,checksum);
-        if(magic!=0x3154534d504f0000ull+kind||version!=1||checksum!=hash(input+24,n-24)) throw Invalid{};
+        if(magic!=0x3154534d504f0000ull+kind||version!=expected_version||checksum!=hash(input+24,n-24)) throw Invalid{};
     }
     template<class T> void one(T& v) {
         if constexpr(std::is_same_v<T,bool>) {
@@ -53,8 +53,8 @@ struct Archive {
         else bytes.insert(bytes.end(),b.begin(),b.end());
     }
     void end() {if(pos!=size)throw Invalid{};}
-    std::vector<std::uint8_t> finish(unsigned kind) {
-        Archive header;std::uint64_t magic=0x3154534d504f0000ull+kind,version=1,checksum=hash(bytes.data(),bytes.size());
+    std::vector<std::uint8_t> finish(unsigned kind,unsigned format_version=1) {
+        Archive header;std::uint64_t magic=0x3154534d504f0000ull+kind,version=format_version,checksum=hash(bytes.data(),bytes.size());
         header(magic,version,checksum);header.bytes.insert(header.bytes.end(),bytes.begin(),bytes.end());return header.bytes;
     }
 };

@@ -17,3 +17,5 @@ EXPORTS
     iopm_state_size
     iopm_save_state
     iopm_load_state
+    iopm_render_channels_f32
+    iopm_render_events_channels_f32

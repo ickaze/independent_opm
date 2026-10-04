@@ -101,6 +101,8 @@ public:
     std::uint8_t control_outputs() const { return registers_[0x1b] >> 6; }
     void advance(std::uint64_t clocks, Sink sink = nullptr, void* context = nullptr);
     Stereo last_sample() const { return last_; }
+    // Pre-pan, normalized native-rate channel output; updated at synthesis boundaries.
+    const std::array<Stereo, 8>& last_channel_samples() const { return channel_samples_; }
     std::uint64_t clock_count() const { return clocks_; }
     std::uint32_t clock_hz() const { return clock_hz_; }
     double native_rate() const { return clock_hz_ / 64.0; }
@@ -142,6 +144,7 @@ private:
     LfoInfo lfo_info_{};
     bool csm_release_ = false;
     Stereo last_{};
+    std::array<Stereo, 8> channel_samples_{};
     std::array<std::uint8_t, 8> left_previous_mask_{}, right_previous_mask_{};
     bool measured_alg5_timing_ = false;
     std::array<std::array<double, 4>, 8> previous_outputs_{};

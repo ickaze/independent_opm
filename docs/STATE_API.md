@@ -1,4 +1,4 @@
-# 0.11b 状態保存・復元 / Save states
+# 0.13 状態保存・復元 / Save states
 
 コア、ホスト側Resampler、C ABI DLLにバージョン付きの状態保存を追加した。
 既存のC ABI 1は維持し、3つの関数を追加エクスポートする。旧DLLには新関数がないため再ビルド・差し替えが必要。
@@ -86,3 +86,7 @@ CMakeのstate_serializationテスト、build_dll_windows.batのWin32/x64の試�
 Ym2151 and Resampler expose `save_state()` returning a byte vector and `load_state(data,size)` returning bool. The DLL adds `iopm_state_size`, `iopm_save_state`, and `iopm_load_state`. DLL snapshots include the entire core, filter history and coefficients, output rate, and fractional clock remainder. Loading replaces the destination configuration with the saved configuration. Failed loads are atomic.
 
 The versioned little-endian format uses explicit fields and IEEE binary64, not object memory. It is layout-independent between 32/64-bit builds; cross-platform floating-point continuation is not guaranteed bit-identical. Tests on Linux x64 confirm identical continuation within one build. Stop concurrent rendering and do not call these allocating APIs from audio callbacks or core Sink callbacks. Host-owned sequencer, queued audio, and application state must be saved separately.
+
+## 0.13: DLL state v2
+
+8チャンネルのResampler履歴を追加保存する。DLLの種別は3、形式バージョンは2。0.12以前のDLL状態v1は `IOPM_INVALID_STATE` で拒否し、現在のインスタンスを変更しない。コアおよびResampler単体形式v1は維持。デコード時のサイズ上限は4MiB。

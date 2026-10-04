@@ -1,16 +1,16 @@
 {
-  "version": "0.12",
-  "variant": "noise-normalization-20260929",
+  "version": "0.13",
+  "variant": "channel-waveform-api-20261004",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "bytes": 3401,
-      "sha256": "01aaf80aa858734614471f80f4f38afd324bad5aea38c82ad66e0edac6c0a42e"
+      "bytes": 4111,
+      "sha256": "9f21fb884cb0dab0474e9252356c4c8567bd61557c618f22ce7d19ecf857704a"
     },
     {
       "path": "CMakeLists.txt",
-      "bytes": 3356,
-      "sha256": "531e22933839a773445540ece9cc855162072d623bd8a9f5c7f1b5b78f4eba8c"
+      "bytes": 3579,
+      "sha256": "1d8a9735453a75cc5197d0ca4c7227a1016fc30fe365fc4dbd5cbbc1267933d0"
     },
     {
       "path": "LICENSE.txt",
@@ -19,8 +19,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7293,
-      "sha256": "dc40c787237e761a4480a5cca39eacec1361e9ae3347371a22ea489c480db596"
+      "bytes": 7369,
+      "sha256": "e1e920a5f5063f17b256eb39a187d7841c68671279ceda99187cc757e4157447"
     },
     {
       "path": "build_dll_windows.bat",
@@ -39,13 +39,18 @@
     },
     {
       "path": "dll/independent_opm.def",
-      "bytes": 389,
-      "sha256": "3fa94e7ab3a63678a0dc50a22f02e343c38159f5f9574a04825f14f15ec92235"
+      "bytes": 454,
+      "sha256": "f6bef824018fb917a2f59a188c49fe204449943c680c28d515a0207a92858ca3"
     },
     {
-      "path": "docs/BINARY_RELEASE_0.12.md",
-      "bytes": 777,
-      "sha256": "b22255e6a6f7714a4ae63899fcece96190c707e3fa5ceab1693e5d1300041182"
+      "path": "docs/CHANNEL_OUTPUT_API.md",
+      "bytes": 3401,
+      "sha256": "4984210b564fcab2e415f675320a17d60d4513fafaf80a9e6997ed0e516141a6"
+    },
+    {
+      "path": "docs/CHANNEL_VALIDATION.txt",
+      "bytes": 1441,
+      "sha256": "0fc0561e667af77777694ecf2d9c97ee207e6f6b19841dbcede15c3e06f77d80"
     },
     {
       "path": "docs/COPYRIGHT_NOTICE_UPDATE.md",
@@ -54,18 +59,18 @@
     },
     {
       "path": "docs/DLL_API.md",
-      "bytes": 9523,
-      "sha256": "d48b601d21b11dd814f12fc1308d9213bf56541f953d90ac65fd23d03d3f6893"
+      "bytes": 9697,
+      "sha256": "2326c0e01a9fa0884e351a09e7bc86d0fd3752d4af52d368219c758a8a44b853"
     },
     {
       "path": "docs/DLL_API_INVENTORY.json",
-      "bytes": 945,
-      "sha256": "034ae43264778dd983f58c715b802b2a23447f16394f3276a4c6ae3b58517d01"
+      "bytes": 627,
+      "sha256": "238a00fdf144c44a9deca4eb26945959450a9786af9b7ca36ba314fea46ce3c9"
     },
     {
       "path": "docs/DLL_VALIDATION.md",
-      "bytes": 2193,
-      "sha256": "6387167561575026962d5e75355055173065bed3e89c4a57fb3f75abb7185bb8"
+      "bytes": 645,
+      "sha256": "02162c5236ea12b1ddc445f1e50e9e4facc47c268d80a7e2ccb48ec31a5cd5a5"
     },
     {
       "path": "docs/INFERRED_SEQUENCE_0.11b.md",
@@ -119,8 +124,8 @@
     },
     {
       "path": "docs/STATE_API.md",
-      "bytes": 6544,
-      "sha256": "3528f52346a25e54f816eb43954acc664bb965fe32ef0eee255a5844bbf8eed1"
+      "bytes": 6878,
+      "sha256": "a59284d860bbafce73f9d6ffd7e264ffee2cac62fad745803b92abcc56ec6903"
     },
     {
       "path": "docs/STATE_VALIDATION.txt",
@@ -163,6 +168,11 @@
       "sha256": "9a9395481d6fdb465883ba48a22523d61cbbcb06b79c7d2d12144eacdfedfb82"
     },
     {
+      "path": "docs/history/BINARY_RELEASE_0.12.md",
+      "bytes": 777,
+      "sha256": "b22255e6a6f7714a4ae63899fcece96190c707e3fa5ceab1693e5d1300041182"
+    },
+    {
       "path": "docs/history/DLL_VALIDATION_INITIAL.md",
       "bytes": 1883,
       "sha256": "8da3654a33009371e71e05828438237794a3c02052acf91c4dc21d361c8c7928"
@@ -176,6 +186,16 @@
       "path": "docs/history/LICENSE_HISTORY_CORRECTION.md",
       "bytes": 2885,
       "sha256": "fa3e3dcb75f8858dd8325dc567c944accbdea1e001c208bd129faf983603e48f"
+    },
+    {
+      "path": "docs/history/PRE_CHANNEL_DLL_API_INVENTORY.json",
+      "bytes": 945,
+      "sha256": "034ae43264778dd983f58c715b802b2a23447f16394f3276a4c6ae3b58517d01"
+    },
+    {
+      "path": "docs/history/PRE_CHANNEL_DLL_VALIDATION.md",
+      "bytes": 2193,
+      "sha256": "6387167561575026962d5e75355055173065bed3e89c4a57fb3f75abb7185bb8"
     },
     {
       "path": "docs/history/PROVENANCE.md",
@@ -569,8 +589,8 @@
     },
     {
       "path": "include/independent_opm.h",
-      "bytes": 3583,
-      "sha256": "9fe60b782106fa4e332d363b73a9cca220583e3985cb8bf34469648c5b1f2093"
+      "bytes": 4265,
+      "sha256": "2a0b5d4fcbb24ad4d751e6cb64a6dc2815f804f657c3d83712fac763eed51231"
     },
     {
       "path": "include/measured_lfo.hpp",
@@ -579,8 +599,8 @@
     },
     {
       "path": "include/ym2151.hpp",
-      "bytes": 7926,
-      "sha256": "e55cda2aaa56cc88371e2bc1ee9997be3f671b462327eb81d28e5f3df56e9732"
+      "bytes": 8151,
+      "sha256": "6669c24203edc4d04c4aa639c1bec6486b4e88dcb8ee4e268e84883212d9916e"
     },
     {
       "path": "measurements-4mhz/01SOLO_model.wav",
@@ -2729,8 +2749,8 @@
     },
     {
       "path": "src/dll_api.cpp",
-      "bytes": 7002,
-      "sha256": "f1a5a0c5cfd68c9c33e020da713c851cb6a9fa1ff994a298944bc3b311e2caae"
+      "bytes": 8815,
+      "sha256": "fdc89229601dd13e2957e4b8d6b30e1bb9333fe9d872d481356d5a45d2fdc466"
     },
     {
       "path": "src/envelope_times.hpp",
@@ -2744,13 +2764,13 @@
     },
     {
       "path": "src/state_codec.hpp",
-      "bytes": 2922,
-      "sha256": "0695fa4978eb3d7587acabd76b3acf549eee4d5859934e1de592f3061e1cfb3f"
+      "bytes": 3004,
+      "sha256": "0ed5b007d21d8926ff827a17dfb20ce134596442043cd3d794150a6d1d12a743"
     },
     {
       "path": "src/ym2151.cpp",
-      "bytes": 18619,
-      "sha256": "4412403f7857a809734e56b34ec948314219393dac36ebe917555bf89add6fc8"
+      "bytes": 18728,
+      "sha256": "819776af0316e60683998e3310b5ca6072a73f12e43def01382f32cd0d68404d"
     },
     {
       "path": "tests/make_periodic_vectors.py",
@@ -2766,6 +2786,11 @@
       "path": "tests/test_c_api.c",
       "bytes": 2315,
       "sha256": "e8bd362e1d8249e5c168dd7f4309745e9f9405b136819e9affdd288bb5f47697"
+    },
+    {
+      "path": "tests/test_channels.cpp",
+      "bytes": 2719,
+      "sha256": "6803314adf789eaca652fe27c2651a6bab1959311c2a7497bcc0a0dac0198355"
     },
     {
       "path": "tests/test_core.cpp",

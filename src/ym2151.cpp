@@ -49,7 +49,7 @@ void Ym2151::reset() {
     clocks_ = 0; timer_a_ = timer_b_ = busy_ = sample_phase_ = 0;
     address_ = flags_ = amd_ = pmd_ = 0;
     periodic_ = {}; random_ = {}; lfo_info_ = {};
-    csm_release_ = false; last_ = {};
+    csm_release_ = false; last_ = {}; channel_samples_ = {};
     clear_output_sample_delays(); previous_outputs_ = {}; measured_alg5_timing_ = false;
 }
 void Ym2151::set_output_sample_delays(unsigned channel, std::uint8_t left_mask,
@@ -250,6 +250,7 @@ Stereo Ym2151::synthesize() {
             }
         }
         previous_outputs_[ch] = out;
+        channel_samples_[ch] = {left_result/8, right_result/8};
         if(control&64) mix.left += left_result/8;
         if(control&128) mix.right += right_result/8;
     }
@@ -352,7 +353,7 @@ bool Ym2151::load_state(const void* data,std::size_t size) {
         if(c.random_.state>0x1ffff||c.random_.age>=32u*(32u-(c.registers_[15]&31))||c.random_.latch_age>=detail::MeasuredRandom::period(c.registers_[24])) return false;
         for(const auto& ch:c.operators_)for(const auto& o:ch)if(static_cast<unsigned>(o.stage)>4)return false;
         for(unsigned i=0;i<8;++i)if(c.manual_keys_[i]>15||c.left_previous_mask_[i]>15||c.right_previous_mask_[i]>15)return false;
-        *this=c;return true;
+        c.channel_samples_={};*this=c;return true;
     } catch(const state_detail::Invalid&) {return false;}
 }
 template<class Archive> void Resampler::state_fields(Archive& a) {
