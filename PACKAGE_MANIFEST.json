@@ -1,16 +1,21 @@
 {
-  "version": "0.13",
-  "variant": "channel-waveform-api-20261004",
+  "version": "0.14",
+  "variant": "single-thread-optimization-20261011",
   "files": [
     {
+      "path": ".gitignore",
+      "bytes": 827,
+      "sha256": "c4f31f2975d76f2b4eeb4c06f9b860fdeb781145ca81c1ce9a9db0f0459d12e0"
+    },
+    {
       "path": "CHANGELOG.md",
-      "bytes": 4111,
-      "sha256": "9f21fb884cb0dab0474e9252356c4c8567bd61557c618f22ce7d19ecf857704a"
+      "bytes": 4790,
+      "sha256": "d909f4b91dd5810d9e179c30d2080bde4215b032acbde70f25f03f0d79b8411f"
     },
     {
       "path": "CMakeLists.txt",
       "bytes": 3579,
-      "sha256": "1d8a9735453a75cc5197d0ca4c7227a1016fc30fe365fc4dbd5cbbc1267933d0"
+      "sha256": "5e8929a6b36ef770345b291abf21a61d357f150ce1d88ce05d2528362652b323"
     },
     {
       "path": "LICENSE.txt",
@@ -19,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 7369,
-      "sha256": "e1e920a5f5063f17b256eb39a187d7841c68671279ceda99187cc757e4157447"
+      "bytes": 7545,
+      "sha256": "3256d96d8bdb28bc81751a45d44ca6f2a199bdb37dadb8ad15331634e81f70bd"
     },
     {
       "path": "build_dll_windows.bat",
@@ -60,17 +65,17 @@
     {
       "path": "docs/DLL_API.md",
       "bytes": 9697,
-      "sha256": "2326c0e01a9fa0884e351a09e7bc86d0fd3752d4af52d368219c758a8a44b853"
+      "sha256": "3c5a614a081aaee7cc23446ac3b0e6636ad1882125e9b74d60dd65ccc5638d20"
     },
     {
       "path": "docs/DLL_API_INVENTORY.json",
       "bytes": 627,
-      "sha256": "238a00fdf144c44a9deca4eb26945959450a9786af9b7ca36ba314fea46ce3c9"
+      "sha256": "4ce6e06ccb7a47a5cf5bf415687cd661c0782ba8ddd8b4a79e8a7e785e031160"
     },
     {
       "path": "docs/DLL_VALIDATION.md",
-      "bytes": 645,
-      "sha256": "02162c5236ea12b1ddc445f1e50e9e4facc47c268d80a7e2ccb48ec31a5cd5a5"
+      "bytes": 915,
+      "sha256": "198bcde6fe56898c2b052bac3d3a97c33de671031ab08b9a1cee4d9cc3775eef"
     },
     {
       "path": "docs/INFERRED_SEQUENCE_0.11b.md",
@@ -101,6 +106,21 @@
       "path": "docs/NOISE_LEVEL_UPDATE.md",
       "bytes": 1091,
       "sha256": "20b0877636eda2e93028a9b36da81577b1e413fa6f0644a07303a30a75995b3b"
+    },
+    {
+      "path": "docs/OPTIMIZATION_0.14.md",
+      "bytes": 3281,
+      "sha256": "fe089a978e6d930b3c6d4c8ed2feadc173b34b74342bae6b8f9df6b9a35abc49"
+    },
+    {
+      "path": "docs/OPTIMIZATION_RESULTS_0.14.json",
+      "bytes": 4107,
+      "sha256": "a34fa7e75f1d5c12c42230fedeb1b5f57588f336c0b045ceae4a8466f7d00136"
+    },
+    {
+      "path": "docs/OPTIMIZATION_TESTS_0.14.txt",
+      "bytes": 1582,
+      "sha256": "5eaca8d542560d9fe1f762e280b0804df26f06727e398b2752988e90d7eaedaa"
     },
     {
       "path": "docs/PERIODIC_REPLACEMENT.md",
@@ -599,8 +619,8 @@
     },
     {
       "path": "include/ym2151.hpp",
-      "bytes": 8151,
-      "sha256": "6669c24203edc4d04c4aa639c1bec6486b4e88dcb8ee4e268e84883212d9916e"
+      "bytes": 8514,
+      "sha256": "193ababf3e028a512d31c9bb6657b235a6d61e38357c0970811a0f186b2ae67c"
     },
     {
       "path": "measurements-4mhz/01SOLO_model.wav",
@@ -2750,7 +2770,7 @@
     {
       "path": "src/dll_api.cpp",
       "bytes": 8815,
-      "sha256": "fdc89229601dd13e2957e4b8d6b30e1bb9333fe9d872d481356d5a45d2fdc466"
+      "sha256": "5bf09c115d4dea2a1af0de5b39f504d35ea67613e95b22fae8673ab4f9fbc469"
     },
     {
       "path": "src/envelope_times.hpp",
@@ -2759,8 +2779,8 @@
     },
     {
       "path": "src/main.cpp",
-      "bytes": 6983,
-      "sha256": "263c3f2efa6f94c8aab9f6456112b3f6078295be9b1c621fff9f6c579d5f637f"
+      "bytes": 6982,
+      "sha256": "3cc231c5c0763d5b840c284b3aa92b2359113540425cf2c08067545ebe831fc1"
     },
     {
       "path": "src/state_codec.hpp",
@@ -2769,8 +2789,8 @@
     },
     {
       "path": "src/ym2151.cpp",
-      "bytes": 18728,
-      "sha256": "819776af0316e60683998e3310b5ca6072a73f12e43def01382f32cd0d68404d"
+      "bytes": 19992,
+      "sha256": "3b488e2cf0dc3a61efd63e388e5f05b7fd1e45f333b8750f9af2dfe97d82a976"
     },
     {
       "path": "tests/make_periodic_vectors.py",
@@ -2851,6 +2871,11 @@
       "path": "tools/prepare_recordings.py",
       "bytes": 973,
       "sha256": "9e37d5e32b931b45247d06ab264455e64f58973314992566f620d01eee919533"
+    },
+    {
+      "path": "tools/verify_optimization.py",
+      "bytes": 5247,
+      "sha256": "c96fa1f5836b6d9bccbf2755d1b9787232598ba444acddbe590683350655d2d0"
     }
   ]
 }

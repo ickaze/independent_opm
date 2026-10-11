@@ -1,6 +1,6 @@
-# Independent OPM 0.13（実測LFO置き換え版）
+# Independent OPM 0.14（シングルスレッド高速化版）
 
-YM2151のレジスタ入力からステレオ音声を生成するC++17コアです。本配布は **0BSD**。0.13ではミキシング前のチャンネル別波形取得APIを追加しました。詳細は[API仕様](docs/CHANNEL_OUTPUT_API.md)を参照してください。
+YM2151のレジスタ入力からステレオ音声を生成するC++17コアです。本配布は **0BSD**。0.14ではシングルスレッドのまま音程・振幅計算をキャッシュして高速化しました。[変更内容と比較結果](docs/OPTIMIZATION_0.14.md)。0.13で追加したチャンネル別波形APIも利用できます。詳細は[API仕様](docs/CHANNEL_OUTPUT_API.md)を参照してください。
 
 Copyright (C) 2026 by I.C.KaZe
 
@@ -29,7 +29,7 @@ build_windows.bat
 ```
 
 bin/opm_render.exe と bin/opm_tests.exe を生成し、テスト後に demo.wav を生成します。
-Windows用実行ファイルは同梱していません。bin/内の拡張子なしファイルはLinux用です。
+Windows DLLと実行ファイルは同梱していません。DLLはこの0.14ソースから再ビルドしてください。
 C++によるデスクトップ開発ワークロードが必要です。
 
 CMakeでもビルドできます。

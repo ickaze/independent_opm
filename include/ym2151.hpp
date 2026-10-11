@@ -148,6 +148,11 @@ private:
     std::array<std::uint8_t, 8> left_previous_mask_{}, right_previous_mask_{};
     bool measured_alg5_timing_ = false;
     std::array<std::array<double, 4>, 8> previous_outputs_{};
+    // Derived caches are not serialized; reset/load invalidate them.
+    std::array<std::array<double,4>,8> cached_cents_{}, cached_amplitude_attenuation_{};
+    std::array<std::array<std::uint32_t,4>,8> cached_increment_{};
+    std::array<std::array<double,4>,8> cached_amplitude_{};
+    std::array<std::array<bool,4>,8> increment_valid_{}, amplitude_valid_{};
     unsigned reg(unsigned base, unsigned channel, unsigned slot) const;
     unsigned rate(unsigned channel, unsigned slot, unsigned raw) const;
     double frequency(unsigned channel, unsigned slot, double cents) const;

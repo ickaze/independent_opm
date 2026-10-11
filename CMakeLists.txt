@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
-project(IndependentOPM VERSION 0.13.0 LANGUAGES C CXX)
-set(INDEPENDENT_OPM_VERSION "0.13")
+project(IndependentOPM VERSION 0.14.0 LANGUAGES C CXX)
+set(INDEPENDENT_OPM_VERSION "0.14")
 add_library(independent_opm src/ym2151.cpp)
 target_include_directories(independent_opm PUBLIC include)
 target_compile_features(independent_opm PUBLIC cxx_std_17)

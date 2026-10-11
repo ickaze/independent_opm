@@ -64,7 +64,7 @@ void u32(std::ostream& f,std::uint32_t v) { u16(f,v&65535); u16(f,v>>16); }
 int main(int argc,char** argv) {
     try {
         if(argc<3) {
-            std::cout<<"Independent OPM 0.11b experimental - functional approximation, not silicon-exact\n"
+            std::cout<<"Independent OPM 0.14 experimental - functional approximation, not silicon-exact\n"
               "opm_render --demo output.wav [seconds=6] [clock=3579545] [rate=48000] [gain=1] [timing_profile.txt]\n"
               "opm_render trace.txt output.wav [seconds=6] [clock=3579545] [rate=48000] [gain=1] [timing_profile.txt]\n"
               "Use --gmc-opt04-4mhz in place of timing_profile.txt for measured ALG5/ALG7 capture timing (4MHz/96kHz).\n"

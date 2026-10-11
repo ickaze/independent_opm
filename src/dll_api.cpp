@@ -36,7 +36,7 @@ template<class F> static int32_t guard(F&& f) noexcept {
     catch(...) { return IOPM_INTERNAL_ERROR; }
 }
 uint32_t IOPM_CALL iopm_abi_version(void) { return IOPM_ABI_VERSION; }
-const char* IOPM_CALL iopm_version(void) { return "0.13 / C ABI 1"; }
+const char* IOPM_CALL iopm_version(void) { return "0.14 / C ABI 1"; }
 int32_t IOPM_CALL iopm_create(uint32_t clock,uint32_t rate,iopm_handle* out) {
     if(!out) return IOPM_INVALID_ARGUMENT;
     *out=nullptr;

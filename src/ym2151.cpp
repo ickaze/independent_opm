@@ -43,6 +43,8 @@ Ym2151::Ym2151(std::uint32_t clock_hz) : clock_hz_(clock_hz) {
     reset();
 }
 void Ym2151::reset() {
+    for (auto& channel : increment_valid_) channel.fill(false);
+    for (auto& channel : amplitude_valid_) channel.fill(false);
     registers_.fill(0); manual_keys_.fill(0);
     for (auto& channel : operators_) for (auto& op : channel) op = Operator{};
     for (auto& f : feedback_) f.fill(0);
@@ -105,6 +107,11 @@ void Ym2151::key(unsigned ch, unsigned slot, bool on, bool force) {
 void Ym2151::write_register(std::uint8_t a, std::uint8_t v) {
     auto previous = registers_[a];
     registers_[a] = v;
+    if (previous != v && ((a >= 0x28 && a <= 0x37) ||
+                          (a >= 0x40 && a <= 0x5f) ||
+                          (a >= 0xc0 && a <= 0xdf))) {
+        for (auto& channel : increment_valid_) channel.fill(false);
+    }
     busy_ = 68; // Application manual p.5: write busy duration.
     if (a == 0x08) {
         unsigned ch = v & 7;
@@ -199,11 +206,24 @@ Stereo Ym2151::synthesize() {
                     // 43NOISE: noise level is approximately 1/4 of a TL0 sine peak.
                     // Flat-EG normalization only; EG/AM and endpoint quantization remain approximate.
                     value = .25*(random_.state&1 ? -1 : 1)*std::max(0.0,1-attenuation/96);
-                else value = wave(op.phase,mod_cycles)*std::pow(10.0,-attenuation/20);
+                else {
+                    if (!amplitude_valid_[ch][slot] ||
+                        cached_amplitude_attenuation_[ch][slot] != attenuation) {
+                        cached_amplitude_[ch][slot] = std::pow(10.0,-attenuation/20);
+                        cached_amplitude_attenuation_[ch][slot] = attenuation;
+                        amplitude_valid_[ch][slot] = true;
+                    }
+                    value = wave(op.phase,mod_cycles)*cached_amplitude_[ch][slot];
+                }
             }
-            double cycles=frequency(ch,slot,cents)/native_rate();
-            auto increment=static_cast<std::uint64_t>(std::llround(cycles*4294967296.0));
-            op.phase += static_cast<std::uint32_t>(increment);
+            if (!increment_valid_[ch][slot] || cached_cents_[ch][slot] != cents) {
+                double cycles=frequency(ch,slot,cents)/native_rate();
+                auto increment=static_cast<std::uint64_t>(std::llround(cycles*4294967296.0));
+                cached_increment_[ch][slot] = static_cast<std::uint32_t>(increment);
+                cached_cents_[ch][slot] = cents;
+                increment_valid_[ch][slot] = true;
+            }
+            op.phase += cached_increment_[ch][slot];
             out[slot]=value;
             return value;
         };
@@ -321,9 +341,11 @@ Stereo Resampler::output(double fraction) const {
         throw std::invalid_argument("Native fraction must be in [0,1)");
     unsigned p=std::min(phases-1,static_cast<unsigned>(fraction*phases));
     Stereo out;
+    unsigned index = head_;
     for(unsigned i=0;i<taps;++i) {
-        auto f=history_[(head_+i)%taps];
+        auto f=history_[index];
         out.left+=f.left*weights_[p][i]; out.right+=f.right*weights_[p][i];
+        if (++index == taps) index = 0;
     }
     return out;
 }
@@ -353,6 +375,8 @@ bool Ym2151::load_state(const void* data,std::size_t size) {
         if(c.random_.state>0x1ffff||c.random_.age>=32u*(32u-(c.registers_[15]&31))||c.random_.latch_age>=detail::MeasuredRandom::period(c.registers_[24])) return false;
         for(const auto& ch:c.operators_)for(const auto& o:ch)if(static_cast<unsigned>(o.stage)>4)return false;
         for(unsigned i=0;i<8;++i)if(c.manual_keys_[i]>15||c.left_previous_mask_[i]>15||c.right_previous_mask_[i]>15)return false;
+        for (auto& channel : c.increment_valid_) channel.fill(false);
+        for (auto& channel : c.amplitude_valid_) channel.fill(false);
         c.channel_samples_={};*this=c;return true;
     } catch(const state_detail::Invalid&) {return false;}
 }
